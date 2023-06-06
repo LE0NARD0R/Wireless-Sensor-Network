@@ -17,13 +17,13 @@ def meditionApi(request, id=0):
         return JsonResponse(meditions_serializer.data, safe=False)
     elif request.method == 'POST':
         payload = ttn_storage_api.sensor_pull_storage()
+        node = payload[0]['result']['uplink_message']['decoded_payload']['id']
         volt = payload[0]['result']['uplink_message']['decoded_payload']['sensor_volt']
         ph = payload[0]['result']['uplink_message']['decoded_payload']['Ph_act']
         current = payload[0]['result']['uplink_message']['decoded_payload']['current']
-        query = Meditions(Ph=ph, Voltage=volt, Current=current)
+        query = Meditions(Node=node, Ph=ph, Voltage=volt, Current=current)
         query.save()
-        if query.is_valid():
-            return JsonResponse("Added Successfully", safe=False)
+        return JsonResponse("Added Successfully", safe=False)
 
 
 

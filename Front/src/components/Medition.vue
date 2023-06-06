@@ -28,6 +28,7 @@ export default {
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Node</th>
           <th scope="col">Ph</th>
           <th scope="col">Voltage</th>
           <th scope="col">Current</th>
@@ -36,6 +37,7 @@ export default {
       <tbody>
         <tr v-for="med, i in meditions" :key="med.MeditionsId" >
           <td>{{ (i+1) }}</td>
+          <td>{{ med.Node }}</td>
           <td>{{ med.Ph }}</td>
           <td>{{ med.Voltage }}</td>
           <td>{{ med.Current }}</td>
